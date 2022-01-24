@@ -2,9 +2,17 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 287: expected statement.
-    did_other_activity_music = True
-                             ^
+File "game/script.rpy", line 297: expected ':' not found.
+    else
+        ^
+
+File "game/script.rpy", line 345: expected ':' not found.
+    else
+        ^
+
+File "game/script.rpy", line 549: if statement expects a non-empty block.
+    if showup_both or showup_one:  
+                                   ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Sat Jan 15 18:12:25 2022
+Mon Jan 24 16:20:02 2022
