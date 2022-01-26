@@ -62,7 +62,7 @@ label start:
     # images directory to show it.
     scene bg welcome
     play music "audio/theme.mp3"
-    play sound "audio/Crowd in Fair.mp3"
+    play sound "audio/Crowd in Fair.mp3" volume 0.5
     "Welcome to Townia Fair!"   
 
     scene bg fair
@@ -74,9 +74,10 @@ label start:
     show piz idle
 
     # These display lines of dialogue.
-
+    voice "audio/piz_happy3.mp3"
     piz "I can’t believe it, I made it right on schedule. This is great!" 
     show piz think
+    voice "audio/piz_think1.mp3"
     piz  "Now I need to first find my missing topping, then to the cheese filling both for my crust. From there to the competition."
     
     #1.2
@@ -122,8 +123,9 @@ label start:
     label piz_choice2_music:
         $ stress_level += 20
         play music "audio/Musician - First Half (Slow).mp3"
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Crowd in Fair.mp3" volume 0.2
         show piz horror
+        voice "audio/piz_horror3.mp3"
         piz "The music is nice, but this definitely isn’t where I’m supposed to be."   
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby."
         stop music fadeout 1.0
@@ -149,6 +151,7 @@ label start:
         play music "audio/Musician - Second Half (Fast).mp3"
         play sound "audio/Crowd in Fair.mp3" volume 0.2
         show piz horror
+        voice "audio/piz_horror1.mp3"
         piz "I really shouldn’t be wasting my time on this. I still have a list of errands to accomplish before the competition."  
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby." 
         stop music fadeout 1.0
@@ -167,6 +170,7 @@ label start:
         play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Cheese Filling.mp3"
         show piz horror
+        voice "audio/piz_horror2.mp3"
         "There seemed to be a big crowd between Piz and the topping stall, therefore, Piz decided to approach the nearby stall and have his crust filled with cheese."
         "Having done that, Piz made his way through the crowd to reach the toppings stall."  
         jump piz_topping_out_of_order
@@ -178,6 +182,7 @@ label start:
         show piz idle
         "Piz cleared a path through the crowd to the stall and picked out his missing topping, now satisfied that he completed the first item on his list."
         show piz speak   
+        voice "audio/piz_happy2.mp3"
         piz "This is exactly what I needed!"
         show piz idle
         "Next on his list is cheese crust filling and then to find the perfect decoration for the final touch up."
@@ -198,6 +203,7 @@ label start:
         show piz idle
         "Therefore, he managed to get his crust filled with quality cheese."
         show piz speak  
+        voice "audio/piz_happy1.mp3"
         piz "This cheese holds up really well!"
         piz "The final touch up would be to find the final decoration to add before signing up."
         jump choice_6
@@ -250,6 +256,7 @@ label start:
         play sound "audio/Trade - Sparkle.mp3"
         show piz horror
         "Sifting through a nearby stall, Piz found an adequate final decoration to set on himself for the competition."
+        voice "audio/piz_horror3.mp3"
         piz "I wasn’t supposed to do this now, but I suppose that this should do."       
         "From there, he moved on to the cheese crust filling stall and arranged that as well."   
         jump piz_decor_after
@@ -261,6 +268,7 @@ label start:
         show piz idle
         "The last item on the list is to find the final perfect decoration, and Piz definitely found it. The magnificent piece adornes his body perfectly."
         show piz speak
+        voice "audio/piz_happy4.mp3"
         piz "This is perfect!"
         jump piz_decor_after
 
@@ -269,6 +277,7 @@ label start:
         play sound "audio/Crowd in Fair.mp3"
         play sound "audio/Trade - Ding.mp3"
         show piz speak
+        voice "audio/piz_happy2.mp3"
         piz "Finally, all errands are complete and I can go sign up to the competition!"
         jump piz_competition
 
@@ -276,6 +285,7 @@ label start:
     label piz_final:
         play sound "audio/Crowd in Fair.mp3"
         show piz horror
+        voice "audio/piz_horror1.mp3"
         piz "I didn’t get a chance to complete all my errands. I hope I’m ready for the competition, regardless, there is no turning back"   
         jump piz_competition   
 
