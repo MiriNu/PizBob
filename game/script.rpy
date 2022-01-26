@@ -291,345 +291,360 @@ label start:
 
     label piz_competition:
 
-#     label bob:
-#        scene bg welcome
-#        "Meanwhile…"
+    label bob:
+        scene bg welcome
+        "Meanwhile…"
 
-#         scene bg fair
-#         play music "theme.mp3"
-#         play sound "Crowd in Fair.mp3"
-#         show bob happy
-#         bob "Hello Townia fair!"
-#         bob "Let’s see, I have to find the sign up booth to test my strength swinging that hammer."
-#         bob "But look at this place! There are so many things to try out, food to eat, goods to peruse, and the sound of music being played. What shall I do first?"
+        scene bg fair
+        play music "audio/theme.mp3"
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        show bob happy
+        voice "audio/bob_happy1.mp3"
+        bob "Hello Townia fair!"
+        bob "Let’s see, I have to find the sign up booth to test my strength swinging that hammer."
+        voice "audio/bob_happy3.mp3"
+        bob "But look at this place! There are so many things to try out, food to eat, goods to peruse, and the sound of music being played. What shall I do first?"
 
-#     #2.2
-#     menu:
-#         "Look for competition sign up":
-#             jump bob_choice1_signup
-#         "Approach the first stall":
-#             jump bob_choice1_stall
-#         "Follow the music":
-#             jump bob_choice1_music
-#
-#     label bob_choice1_signup:
-#         $ focus_level += 35
-#         jump bob_choice5_signup
-#     label bob_choice1_stall:
-#         jump bob_choice3_stall
-#
-#     #3.1
-#     label bob_choice1_music:
-#         play sound "Crowd in Fair.mp3" volume 0.5
-#         stop music
-#         play music "Musician - First Half (Slow).mp3"
-#         show bob happy
-#         bob "This music sounds really nice! Just what I need to get into the mood of the competition!"
-#         show bob think
-#         stop music
-#
-#     #3.2
-#     menu:
-#         "Look for competition sign up":
-#             jump bob_choice2_signup
-#         "Listen to the music":
-#             jump bob_choice2_music
-#
-#     label bob_choice2_signup:
-#         if (!did_food_activity and !did_music_activity):
-#             $ focus_level += 25
-#         else:
-#             $ focus_level += 15
-#         jump bob_choice5_signup
-#
-#     #4.1
-#     label bob_choice2_music:
-#         $ did_music_activity = True
-#         play sound "Crowd in Fair.mp3" volume 0.2
-#         play music "Musician - Second Half (Fast).mp3"
-#         show bob idle
-#         "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
-#         "A few even tossed coins to the hat placed nearby on the floor."
-#         show bob happy
-#         bob "This was great and I enjoyed that a great deal! What should I do next?"
-#         bob "I need to sign up to the competition, but there is still so much to explore at this amazing fair."
-#         stop music
-#
-#         if !did_food_activity:
-#             #4.2
-#             show bob think
-#             menu:
-#                 "Look for competition sign up":
-#                     $ focus_level += 25
-#                     jump bob_choice3_signup
-#                 "Approach the first food stall":
-#                     jump bob_choice3_stall
-#         #4.3
-#         else:
-#             $ focus_level += 15
-#             jump bob_choice3_signup
-#
-#
-#     label bob_choice3_signup:
-#         jump bob_choice5_signup
-#
-#     #5.1
-#     label bob_choice3_stall:
-#         $ did_food_activity = True
-#         play sound "Crowd in Fair.mp3" volume 0.5
-#         play sound "Trade - Food Sizzle.mp3"
-#         show bob happy
-#         bob "Oh wow, look at all of this amazing food! Maybe I have time to try a tiny bite…"
-#
-#     #5.2
-#     menu:
-#         "Buy food and eat it":
-#             jump bob_choice4_food
-#         "Look for sign up competition":
-#             jump bob_choice4_signup
-#
-#     label bob_choice4_signup:
-#         if (!did_food_activity and !did_music_activity):
-#             $ focus_level += 25
-#         else:
-#             $ focus_level += 15
-#         jump bob_choice5_signup
-#
-#     #6.1
-#     label bob_choice4_food:
-#         $ did_food_activity = true
-#         play sound "Crowd in Fair.mp3" volume 0.5
-#         play sound "Trade - Eat Food.mp3"
-#         show bob idle
-#         bob "Om nom nom"
-#         bob "This tasted so good. What should I do now?"
-#
-#     if !did_music_activity:
-#         #6.2
-#         show bob think
-#         menu:
-#             "Follow the music":
-#                 jump bob_choice1_music
-#             "Look for competition sign up":
-#                 $ focus_level += 25
-#                 jump bob_choice5_signup
-#     else:
-#         $ focus_level += 15
-#         jump bob_choice5_signup
-#
-#     #7.1
-#     label bob_choice5_signup:
-#         play sound "Crowd in Fair.mp3"
-#         show bob think
-#         "The sign up stall is straight ahead, right next to a stall with a lot of shiny materials and elements on display."
-#
-#     #7.2
-#     show bob idle
-#     menu:
-#         "Sign up":
-#             jump bob_choice6_signup
-#
-#         "Examine shiny stall":
-#             jump bob_choice6_shiny
-#
-#     label bob_choice6_signup:
-#         $ focus_level += 20
-#         jump bob_signup
-#
-#     #8.1
-#     label bob_choice6_shiny:
-#         $ did_buy = True
-#         play sound "Crowd in Fair.mp3" volume 0.5
-#         play sound "Trade - Whetstone"
-#         show bob happy
-#         "Before signing up to the competition, Bob decided to examine the nearby stall."
-#         "The items at the stall are mesmerizing in their appearance and function."
-#         bob "I’ll buy this shiny whetstone, which will definitely upgrade the sharpness of my mighty axe."
-#         "Following the purchase, Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
-#     #8.2
-#     show bob idle
-#     menu:
-#         "Do warm up sessions":
-#             jump bob_choice7_warmnup
-#         "Scope out competitors":
-#             jump bob_choice7_scope
-#         "Wait for start of competition":
-#             jump bob_choice7_competition
-#
-#     label bob_choice7_warmnup:
-#         $ focus_level += 15
-#         jump bob_choice8_warmnup
-#
-#     label bob_choice7_scope:
-#         $ focus_level += 15
-#         jump bob_scope
-#
-#     label bob_choice7_competition:
-#         if did_buy:
-#             $ focus_level -= 10
-#             jump bob_buy_competition
-#         else:
-#             jump bob_not_buy_competition
-#
-#     #9.1
-#     label bob_signup:
-#         play sound "Crowd in Fair.mp3" volume 0.5
-#         show bob think
-#         "Bob signed up to the competition, and realized there is still time before it starts."
-#         "He could try to do something useful to focus himself or just wait and let the excitement take over."
-#
-#     #9.2
-#     menu:
-#         "Do warm up sessions":
-#             jump bob_choice8_warmnup
-#         "Scope out competitors":
-#             jump bob_choice8_scope
-#         "Wait for start of competition":
-#             jump bob_choice8_competition
-#
-#     label bob_choice8_scope:
-#         $ focus_level += 15
-#         jump bob_scope
-#
-#
-#     #10.1
-#     label bob_choice8_warmnup:
-#         $ focus_level += 15
-#         $ did_warmup_activity = True
-#         if !did_scope_activity:
-#             play sound "Crowd in Fair.mp3" volume 0.5
-#             show think idle
-#             "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike."
-#             bob "These really helped me focus! Should I check out who my competitors are or just wait by myself for the competition to start?"
-#             #10.2
-#             menu:
-#                 "Scope out competitors":
-#                     jump bob_choice9_scope
-#                 "Wait for the start of the competition":
-#                     jump bob_choice9_competition
-#
-#             label bob_choice9_scope:
-#                 $ focus_level += 25
-#                 jump bob_scope_did_warmup
-#
-#             label bob_choice9_competition:
-#                 if did_buy:
-#                     $ focus_level -= 10
-#                     jump bob_buy_competition
-#                 else:
-#                     jump bob_not_buy_competition
-#
-#         #10.3
-#         else:
-#             label bob_warmup_did_scope:
-#                 play sound "Crowd in Fair.mp3" volume 0.5
-#                 show bob think
-#                 "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike. All that is left is to wait for the competition to start."
-#                 if did_buy:
-#                     $ focus_level -= 10
-#                     jump bob_buy_competition
-#                 else:
-#                     jump bob_not_buy_competition
-#
-#     #11.1
-#     label bob_scope:
-#         $ did_scope_activity = True
-#         if !did_warmup_activity:
-#             play sound "Crowd in Fair.mp3" volume 0.5
-#             show bob think
-#             "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
-#             "He gains the confidence that he truly has a chance to beat them for the winning title. He can just wait for the competition to start or do some warm sessions beforehand."
-#
-#             #11.2
-#             menu:
-#                 "Do warm up sessions":
-#                     jump bob_choice10_warmnup
-#                 "Wait for start of competition":
-#                     jump bob_choice10_competition
-#
-#             label bob_choice10_warmnup:
-#                 $ focus_level += 25
-#                 jump bob_warmup_did_scope
-#
-#             label bob_choice10_competition:
-#                 if did_buy:
-#                     $ focus_level -= 10
-#                     jump bob_buy_competition
-#                 else:
-#                     jump bob_not_buy_competition
-#         #11.3
-#         else:
-#             label bob_scope_did_warmup:
-#                 play sound "Crowd in Fair.mp3" volume 0.5
-#                 show bob think
-#                 "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
-#                 "He believes that he stands a good chance against them. All that is left is to wait for the competition to start."
-#
-#
-#         label bob_choice8_competition:
-#         if did_buy:
-#             jump bob_buy_competition
-#
-#         else:
-#             jump bob_not_buy_competition
-#
-#     #13
-#     label bob_buy_competition:
-#         $ focus_level -= 10
-#         play sound "Crowd in Fair.mp3"
-#         play sound "Trade - Ding.mp3"
-#         show bob happy
-#         "While Bob waits for the competition to start, he pulls out the whetstone he just bought and works on sharpening his mighty axe."
-#         "He is full of excitement as he waits for the competition to start. It should be soon."
-#         bob "I will show everyone what a gelatinous octopus such as myself is capable of. I can do this!"
-#         stop music
-#
-#     #12
-#     label bob_not_buy_competition:
-#         play sound "Crowd in Fair.mp3"
-#         show bob happy
-#         "Bob is full of excitement as he waits for the competition to start. It should be soon."
-#         bob "I will show everyone what a gelatinous octopus such as myself is capable of."
-#         stop music
+    #2.2
+    menu:
+        "Look for competition sign up":
+            jump bob_choice1_signup
+        "Approach the first stall":
+            jump bob_choice1_stall
+        "Follow the music":
+            jump bob_choice1_music
+
+    label bob_choice1_signup:
+        $ focus_level += 35
+        jump bob_choice5_signup
+    label bob_choice1_stall:
+        jump bob_choice3_stall
+
+    #3.1
+    label bob_choice1_music:
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        stop music
+        play music "audio/Musician - First Half (Slow).mp3"
+        show bob happy
+        voice "audio/bob_happy4.mp3"
+        bob "This music sounds really nice! Just what I need to get into the mood of the competition!"
+        show bob think
+        stop music
+
+    #3.2
+    menu:
+        "Look for competition sign up":
+            jump bob_choice2_signup
+        "Listen to the music":
+            jump bob_choice2_music
+
+    label bob_choice2_signup:
+        if (not did_food_activity and not did_music_activity):
+            $ focus_level += 25
+        else:
+            $ focus_level += 15
+        jump bob_choice5_signup
+
+    #4.1
+    label bob_choice2_music:
+        $ did_music_activity = True
+        play sound "audio/Crowd in Fair.mp3" volume 0.2
+        play music "audio/Musician - Second Half (Fast).mp3"
+        show bob idle
+        "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
+        "A few even tossed coins to the hat placed nearby on the floor."
+        show bob happy
+        bob "This was great and I enjoyed that a great deal! What should I do next?"
+        voice "audio/bob_think1.mp3"
+        bob "I need to sign up to the competition, but there is still so much to explore at this amazing fair."
+        stop music
+
+        if not did_food_activity:
+            #4.2
+            show bob think
+            menu:
+                "Look for competition sign up":
+                    $ focus_level += 25
+                    jump bob_choice3_signup
+                "Approach the first food stall":
+                    jump bob_choice3_stall
+        #4.3
+        else:
+            $ focus_level += 15
+            jump bob_choice3_signup
 
 
+    label bob_choice3_signup:
+        jump bob_choice5_signup
 
-#     #1
-#     label ending_seq:
-#         play music "Fight Theme.mp3"
-#         "As people are enjoying the town fair, it’s music, food and various activities, the sound of something big starts to be heard over the excitement."
-#         play sound "owlbert_angry.mp3"
-#         "As it grows closer, it appears that a great owlbear decided to crash the festivities."
-#
-#         if (focus_level <= 80):
-#             $ showup_bob = True
-#         if (stress_level <= 80):
-#             $ showup_piz = True
-#         if (!showup_bob and showup_piz) or (showup_bob and !showup_piz):
-#             $ showup_one = True
-#         elif showup_bob and showup_piz:
-#             $ showup_both = True
-#         else:
-#             $ showup_none = True
-#
-#         # Caused issues - needs fixing --->  if showup_both or showup_one:
-#             #sound and background
-#
-#         "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
-#         "Is there anybody that would stop it before it is too late?"
-#
-#         if showup_both:
-#             jump showup_both_finale
-#         if showup_one:
-#             jump showup_one_finale
-#         if showup_none:
-#             jump showup_none_finale
-#
-#     label showup_both_finale:
-#         "Piz and Bob are prepared to make a stand against the horrible creature."
-#         " The battle is hard as the monster slashes at them, while they both defend against the attacks."
-#         "Piz fires a spell to stun the creature as Bob drives his mighty axe to finally strike down the beast."
-#
+    #5.1
+    label bob_choice3_stall:
+        $ did_food_activity = True
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Trade - Food Sizzle.mp3"
+        show bob happy
+        voice "audio/bob_happy2.mp3"
+        bob "Oh wow, look at all of this amazing food! Maybe I have time to try a tiny bite…"
+
+    #5.2
+    menu:
+        "Buy food and eat it":
+            jump bob_choice4_food
+        "Look for sign up competition":
+            jump bob_choice4_signup
+
+    label bob_choice4_signup:
+        if (not did_food_activity and not did_music_activity):
+            $ focus_level += 25
+        else:
+            $ focus_level += 15
+        jump bob_choice5_signup
+
+    #6.1
+    label bob_choice4_food:
+        $ did_food_activity = true
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Trade - Eat Food.mp3"
+        show bob idle
+        bob "Om nom nom"
+        voice "audio/bob_think2.mp3"
+        bob "This tasted so good. What should I do now?"
+
+    if not did_music_activity:
+        #6.2
+        show bob think
+        menu:
+            "Follow the music":
+                jump bob_choice1_music
+            "Look for competition sign up":
+                $ focus_level += 25
+                jump bob_choice5_signup
+    else:
+        $ focus_level += 15
+        jump bob_choice5_signup
+
+    #7.1
+    label bob_choice5_signup:
+        play sound "audio/Crowd in Fair.mp3"
+        show bob think
+        voice "audio/bob_think1.mp3"
+        "The sign up stall is straight ahead, right next to a stall with a lot of shiny materials and elements on display."
+
+    #7.2
+    show bob idle
+    menu:
+        "Sign up":
+            jump bob_choice6_signup
+
+        "Examine shiny stall":
+            jump bob_choice6_shiny
+
+    label bob_choice6_signup:
+        $ focus_level += 20
+        jump bob_signup
+
+    #8.1
+    label bob_choice6_shiny:
+        $ did_buy = True
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Trade - Whetstone.mp3"
+        show bob happy
+        "Before signing up to the competition, Bob decided to examine the nearby stall."
+        "The items at the stall are mesmerizing in their appearance and function."
+        voice "audio/bob_happy4.mp3"
+        bob "I’ll buy this shiny whetstone, which will definitely upgrade the sharpness of my mighty axe."
+        "Following the purchase, Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
+    #8.2
+    show bob idle
+    menu:
+        "Do warm up sessions":
+            jump bob_choice7_warmnup
+        "Scope out competitors":
+            jump bob_choice7_scope
+        "Wait for start of competition":
+            jump bob_choice7_competition
+
+    label bob_choice7_warmnup:
+        $ focus_level += 15
+        jump bob_choice8_warmnup
+
+    label bob_choice7_scope:
+        $ focus_level += 15
+        jump bob_scope
+
+    label bob_choice7_competition:
+        if did_buy:
+            $ focus_level -= 10
+            jump bob_buy_competition
+        else:
+            jump bob_not_buy_competition
+
+    #9.1
+    label bob_signup:
+        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        show bob think
+        voice "audio/bob_think1.mp3"
+        "Bob signed up to the competition, and realized there is still time before it starts."
+        "He could try to do something useful to focus himself or just wait and let the excitement take over."
+
+    #9.2
+    menu:
+        "Do warm up sessions":
+            jump bob_choice8_warmnup
+        "Scope out competitors":
+            jump bob_choice8_scope
+        "Wait for start of competition":
+            jump bob_choice8_competition
+
+    label bob_choice8_scope:
+        $ focus_level += 15
+        jump bob_scope
+
+
+    #10.1
+    label bob_choice8_warmnup:
+        $ focus_level += 15
+        $ did_warmup_activity = True
+        if not did_scope_activity:
+            play sound "audio/Crowd in Fair.mp3" volume 0.5
+            show think idle
+            "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike."
+            voice "audio/bob_happy3.mp3"
+            bob "These really helped me focus! Should I check out who my competitors are or just wait by myself for the competition to start?"
+            #10.2
+            menu:
+                "Scope out competitors":
+                    jump bob_choice9_scope
+                "Wait for the start of the competition":
+                    jump bob_choice9_competition
+
+            label bob_choice9_scope:
+                $ focus_level += 25
+                jump bob_scope_did_warmup
+
+            label bob_choice9_competition:
+                if did_buy:
+                    $ focus_level -= 10
+                    jump bob_buy_competition
+                else:
+                    jump bob_not_buy_competition
+
+        #10.3
+        else:
+            label bob_warmup_did_scope:
+                play sound "audio/Crowd in Fair.mp3" volume 0.5
+                show bob think
+                "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike. All that is left is to wait for the competition to start."
+                if did_buy:
+                    $ focus_level -= 10
+                    jump bob_buy_competition
+                else:
+                    jump bob_not_buy_competition
+
+    #11.1
+    label bob_scope:
+        $ did_scope_activity = True
+        if not did_warmup_activity:
+            play sound "audio/Crowd in Fair.mp3" volume 0.5
+            show bob think
+            voice "audio/bob_horror1.mp3"
+            "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
+            "He gains the confidence that he truly has a chance to beat them for the winning title. He can just wait for the competition to start or do some warm sessions beforehand."
+
+            #11.2
+            menu:
+                "Do warm up sessions":
+                    jump bob_choice10_warmnup
+                "Wait for start of competition":
+                    jump bob_choice10_competition
+
+            label bob_choice10_warmnup:
+                $ focus_level += 25
+                jump bob_warmup_did_scope
+
+            label bob_choice10_competition:
+                if did_buy:
+                    $ focus_level -= 10
+                    jump bob_buy_competition
+                else:
+                    jump bob_not_buy_competition
+        #11.3
+        else:
+            label bob_scope_did_warmup:
+                play sound "audio/Crowd in Fair.mp3" volume 0.5
+                show bob think
+                voice "audio/bob_horror1.mp3"
+                "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
+                voice "audio/bob_happy2.mp3"
+                "He believes that he stands a good chance against them. All that is left is to wait for the competition to start."
+
+
+        label bob_choice8_competition:
+        if did_buy:
+            jump bob_buy_competition
+
+        else:
+            jump bob_not_buy_competition
+
+    #13
+    label bob_buy_competition:
+        $ focus_level -= 10
+        play sound "audio/Crowd in Fair.mp3"
+        play sound "Trade - Ding.mp3"
+        show bob happy
+        "While Bob waits for the competition to start, he pulls out the whetstone he just bought and works on sharpening his mighty axe."
+        "He is full of excitement as he waits for the competition to start. It should be soon."
+        voice "audio/bob_happy2.mp3"
+        bob "I will show everyone what a gelatinous octopus such as myself is capable of. I can do this!"
+        stop music
+
+    #12
+    label bob_not_buy_competition:
+        play sound "audio/Crowd in Fair.mp3"
+        show bob happy
+        "Bob is full of excitement as he waits for the competition to start. It should be soon."
+        voice "audio/bob_happy2.mp3"
+        bob "I will show everyone what a gelatinous octopus such as myself is capable of."
+        stop music
+
+
+
+    #1
+    label ending_seq:
+        play music "audio/Fight Theme.mp3"
+        "As people are enjoying the town fair, it’s music, food and various activities, the sound of something big starts to be heard over the excitement."
+        voice "audio/owlbert_angry.mp3"
+        "As it grows closer, it appears that a great owlbear decided to crash the festivities."
+
+        if (focus_level <= 80):
+            $ showup_bob = True
+        if (stress_level <= 80):
+            $ showup_piz = True
+        if (not showup_bob and showup_piz) or (showup_bob and not showup_piz):
+            $ showup_one = True
+        elif showup_bob and showup_piz:
+            $ showup_both = True
+        else:
+            $ showup_none = True
+
+        # Caused issues - needs fixing --->  if showup_both or showup_one:
+            #sound and background
+
+        "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
+        "Is there anybody that would stop it before it is too late?"
+
+        if showup_both:
+            jump showup_both_finale
+        if showup_one:
+            jump showup_one_finale
+        if showup_none:
+            jump showup_none_finale
+
+    label showup_both_finale:
+        "Piz and Bob are prepared to make a stand against the horrible creature."
+        " The battle is hard as the monster slashes at them, while they both defend against the attacks."
+        "Piz fires a spell to stun the creature as Bob drives his mighty axe to finally strike down the beast."
+
 #     label showup_one_finale:
 #
 #     label showup_none_finale:
