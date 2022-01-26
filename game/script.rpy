@@ -590,7 +590,7 @@ label start:
     label bob_buy_competition:
         $ focus_level -= 10
         play sound "audio/Crowd in Fair.mp3"
-        play sound "Trade - Ding.mp3"
+        play sound "audio/Trade - Ding.mp3"
         show bob happy
         "While Bob waits for the competition to start, he pulls out the whetstone he just bought and works on sharpening his mighty axe."
         "He is full of excitement as he waits for the competition to start. It should be soon."
