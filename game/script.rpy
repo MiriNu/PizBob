@@ -42,7 +42,7 @@ image owlbear mad = im.Crop("OWLBEAR MAD.png", (300, 200, 1100, 1800))
 image owlbear mad = im.Scale("OWLBEAR MAD.png", 500, 750)
 
 define piz = Character("Piz", color="#0055FF")
-define bob = Character("Bob", color="#89CC4B")
+define bob = Character("Bob", color="#356d00")
 
 image stress bar = im.Scale("stress_bar.png", 350, 35)
 image stress bar:
