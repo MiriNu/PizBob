@@ -508,7 +508,7 @@ label start:
         $ did_warmup_activity = True
         if not did_scope_activity:
             play sound "audio/Crowd in Fair.mp3" volume 0.5
-            show think idle
+            show bob think
             "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike."
             voice "audio/bob_happy3.mp3"
             bob "These really helped me focus! Should I check out who my competitors are or just wait by myself for the competition to start?"
