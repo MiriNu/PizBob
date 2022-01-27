@@ -35,8 +35,11 @@ image bob horror = im.Scale("BOB HORROR.png", 500, 750)
 image bob speak = im.Crop("BOB SPEAK.png", (300, 200, 1100, 1800))
 image bob speak = im.Scale("BOB SPEAK.png", 500, 750)
 
-image owlbear mad = im.Crop("BOB SPEAK.png", (300, 200, 1100, 1800))
-image owlbear mad = im.Scale("BOB SPEAK.png", 500, 750)
+image bard happy = im.Crop("BARD HAPPY.png", (300, 200, 1100, 1800))
+image bard happy = im.Scale("BARD HAPPY.png", 475, 725)
+
+image owlbear mad = im.Crop("OWLBEAR MAD.png", (300, 200, 1100, 1800))
+image owlbear mad = im.Scale("OWLBEAR MAD.png", 500, 750)
 
 define piz = Character("Piz", color="#0055FF")
 define bob = Character("Bob", color="#89CC4B")
@@ -130,6 +133,7 @@ label start:
         stop music
         play music "audio/Musician - Second Half (Fast).mp3"
         show piz horror
+        show bard happy at left
         voice "audio/piz_horror3.mp3"
         piz "The music is nice, but this definitely isn’t where I’m supposed to be."   
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby."
@@ -157,6 +161,7 @@ label start:
     label piz_choice3_music:
         $ stress_level += 25
         show piz horror
+        show bard happy at left
         voice "audio/piz_horror1.mp3"
         piz "I really shouldn’t be wasting my time on this. I still have a list of errands to accomplish before the competition."
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby." 
@@ -331,6 +336,7 @@ label start:
     #3.1
     label bob_choice1_music:
         show bob happy
+        show bard happy at left
         voice "audio/bob_happy4.mp3"
         bob "This music sounds really nice! Just what I need to get into the mood of the competition!"
         show bob think
@@ -349,12 +355,14 @@ label start:
             $ focus_level += 15
         stop music
         play music "audio/theme.mp3"
+        hide bard happy # won't go away on its own
         jump bob_choice5_signup
 
     #4.1
     label bob_choice2_music:
         $ did_music_activity = True
         stop music
+        show bard happy at left
         play music "audio/Musician - Second Half (Fast).mp3"
         show bob idle
         "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
@@ -382,15 +390,18 @@ label start:
 
 
     label bob_choice3_signup:
+        hide bard happy # won't go away on its own
         jump bob_choice5_signup
 
     #5.1
     label bob_choice3_stall:
+        hide bard happy # won't go away on its own
         $ did_food_activity = True
         play sound "audio/Trade - Food Sizzle.mp3"
         show bob happy
         voice "audio/bob_happy2.mp3"
         bob "Oh wow, look at all of this amazing food! Maybe I have time to try a tiny bite…"
+        # bard image is showing up, not sure why
 
     #5.2
     menu:
@@ -605,6 +616,7 @@ label start:
 
     #1
     label ending_seq:
+        hide bob happy # won't go away on its own
         show bg welcome
         stop music
         play music "audio/Fight Theme.mp3"
@@ -636,7 +648,7 @@ label start:
             jump showup_none_finale
 
     label showup_both_finale:
-        play audio "audio/Full Saved - Crowd Screaming Only.mp3"
+        play sound "audio/Full Saved- Crowd Screaming Only.mp3"
         "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
         "Is there anybody that would stop it before it is too late?"
 
@@ -645,12 +657,12 @@ label start:
         play sound "audio/piz_bob_battle.mp3"
         "The battle is hard as the monster slashes at them, while they both defend against the attacks. Piz fires a spell to stun the creature as Bob drives his mighty axe to finally strike down the beast."
 
-        play audio "audio/Full Saved - Cheering.mp3"
+        play sound "audio/Full Saved- Cheering.mp3"
         "Piz and Bob are heroes who stood up against the massive owlbear and defeated it. Townia’s fair was saved and that evening there was a big celebration in their honor."
 
 
     label showup_one_finale:
-        play audio "audio/Half Saved - Crowd Screaming + Slight Destruction.mp3"
+        play audio "audio/Half Saved- Crowd Screaming + Slight Destruction.mp3"
         "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
         "Is there anybody that would stop it before it is too late?"
         if (showup_piz = True):
@@ -659,7 +671,7 @@ label start:
             "But the monster is big and its slashes cut deep into Piz’s crust. Piz manages to conjure a few crucial spells that hit the monster hard and finally, it is defeated."
 
             "When all seemed lost as a horror swept into the fair, there was only one who stood against it. Piz fought hard and managed eventually to halt the monster’s progress."
-            play sound "audio/Half Saved - Cheering.mp3"
+            play audio "audio/Half Saved- Cheering.mp3"
             "However, it was not without its toll of destruction. There was a tame celebration in Piz’s honor before the crowd shuffled to start work on clearing up the mess left behind."
 
         if (showup_bob = True):
@@ -669,17 +681,17 @@ label start:
             "Finally, he finds the monster’s weak spot and strikes true with his giant axe, as the monster crumples down, defeated."
 
             "When all seemed lost as a horror swept into the fair, there was only one who stood against it. Bob fought hard and managed eventually to halt the monster’s progress."
-            play sound "audio/Half Saved - Cheering.mp3"
+            play audio "audio/Half Saved - Cheering.mp3"
             "However, it was not without its toll of destruction. There was a tame celebration in Bob’s honor before the crowd shuffled to start work on clearing up the mess left behind."
 
     label showup_none_finale:
-        play audio "audio/Destroyed - Screaming + Destruction.mp3"
+        play audio "audio/Destroyed- Screaming + Destruction.mp3"
         "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
         "Is there anybody that would stop it before it is too late?"
 
         play sound "audio/owlbert_angry.mp3"
         "As the monster roared and bared its sharp claws, there was no one to stand against it. It easily menaced its way through the fair grounds, destroying anything and anyone in its wake."
-        play audio "audio/Destroyed - Sad Crowd + Fire.mp3"
+        play audio "audio/Destroyed- Sad Crowd + Fire.mp3"
         "When it finally left, the entire place was in shambles and many were injured or killed. This isn’t a day that the people of Townia will soon forget…"
 
 
