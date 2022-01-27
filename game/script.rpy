@@ -62,7 +62,7 @@ label start:
     # images directory to show it.
     scene bg welcome
     play music "audio/theme.mp3"
-    play sound "audio/Crowd in Fair.mp3" volume 0.5
+    play sound 'audio/Crowd in Fair.mp3' volume 0.2 loop
     "Welcome to Townia Fair!"   
 
     label piz:
@@ -93,15 +93,12 @@ label start:
 
     label piz_choice1_wander:  
         $ stress_level += 15
-        play sound "audio/Crowd in Fair.mp3"
         show piz idle
+        "Looking around, there seems to be great excitement at the fair with many people walking to-and-fro. "
         stop music fadeout 1.0
-        play music "audio/Musician - First Half (Slow).mp3"
-        "Looking around, there seems to be great excitement at the fair with many people walking to-and-fro. " 
         "The toppings stall, which is at top of Piz’s list, appears to be at the far end of the fair." 
-        play music "audio/Musician - First Half (Slow).mp3" fadein 1.0
+        play music "audio/Musician - First Half (Slow).mp3"
         " Whereas, the cheese crust filling stall is nearby. There is the sound of someone playing the lute nearby as well."
-        stop music fadeout 1.0
 
     show piz think
 
@@ -123,13 +120,10 @@ label start:
 
     label piz_choice2_music:
         $ stress_level += 20
-        play music "audio/Musician - First Half (Slow).mp3"
-        play sound "audio/Crowd in Fair.mp3" volume 0.2
         show piz horror
         voice "audio/piz_horror3.mp3"
         piz "The music is nice, but this definitely isn’t where I’m supposed to be."   
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby."
-        stop music fadeout 1.0
 
     #3.2
     menu:
@@ -149,6 +143,7 @@ label start:
 
     label piz_choice3_music:
         $ stress_level += 25
+        stop music
         play music "audio/Musician - Second Half (Fast).mp3"
         play sound "audio/Crowd in Fair.mp3" volume 0.2
         show piz horror
