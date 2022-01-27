@@ -605,7 +605,7 @@ label start:
     label ending_seq:
         play music "audio/Fight Theme.mp3"
         "As people are enjoying the town fair, it’s music, food and various activities, the sound of something big starts to be heard over the excitement."
-        voice "audio/owlbert_angry.mp3"
+        voice "audio/owlbeart_angry.mp3"
         "As it grows closer, it appears that a great owlbear decided to crash the festivities."
 
         if (focus_level <= 80):
