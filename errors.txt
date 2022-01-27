@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 121: expected end of line
-    stop music "audio/theme.mp3"
-               ^
-
-File "game/script.rpy", line 122: play requires a channel
-    play
-        ^
+File "game/script.rpy", line 46: unexpected EOF while parsing
+    top right
+             ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Thu Jan 27 16:26:11 2022
+Thu Jan 27 18:00:11 2022

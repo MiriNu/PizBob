@@ -41,6 +41,12 @@ image bard happy = im.Scale("BARD HAPPY.png", 475, 725)
 image owlbear mad = im.Crop("OWLBEAR MAD.png", (300, 200, 1100, 1800))
 image owlbear mad = im.Scale("OWLBEAR MAD.png", 500, 750)
 
+image stress bar = im.Scale("stress_bar.png", 350, 35)
+image stress bar:
+    "stress_bar.png"
+    xalign 0.95
+    yalign 0.1
+
 define piz = Character("Piz", color="#0055FF")
 define bob = Character("Bob", color="#89CC4B")
 
@@ -80,6 +86,7 @@ label start:
 
         show piz idle
         show screen bar_stress_level
+        show stress bar
         # These display lines of dialogue.
         voice "audio/piz_happy3.mp3"
         piz "I made it to the fair right on schedule! This fair has attracted such a large crowd. Hopefully, I can accomplish my tasks in the correct order."

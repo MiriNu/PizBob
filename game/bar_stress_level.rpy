@@ -7,3 +7,8 @@ screen bar_stress_level:
         xysize(350,35)
         xalign 0.95
         yalign 0.05
+
+
+
+
+
