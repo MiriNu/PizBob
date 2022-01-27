@@ -62,7 +62,7 @@ label start:
     # images directory to show it.
     scene bg welcome
     play music "audio/theme.mp3"
-    play sound 'audio/Crowd in Fair.mp3' volume 0.2 loop
+    play audio 'audio/Crowd in Fair.mp3' volume 0.15 loop
     "Welcome to Townia Fair!"   
 
     label piz:
@@ -76,10 +76,10 @@ label start:
         show screen bar_stress_level
         # These display lines of dialogue.
         voice "audio/piz_happy3.mp3"
-        piz "I can’t believe it, I made it right on schedule. This is great!"
+        piz "I made it to the fair right on schedule! This fair has attracted such a large crowd. Hopefully, I can accomplish my tasks in the correct order."
         show piz think
         voice "audio/piz_think1.mp3"
-        piz  "Now I need to first find my missing topping, then to the cheese filling both for my crust. From there to the competition."
+        piz  "First, I need to find my missing topping. Second is the cheese filling booth for my crust. Then, I need to get a decoration for the final touch. From there to the competition."
     
     #1.2
     menu:
@@ -98,7 +98,7 @@ label start:
         stop music fadeout 1.0
         "The toppings stall, which is at top of Piz’s list, appears to be at the far end of the fair." 
         play music "audio/Musician - First Half (Slow).mp3"
-        " Whereas, the cheese crust filling stall is nearby. There is the sound of someone playing the lute nearby as well."
+        "Whereas, the cheese crust filling stall is nearby. There is the sound of someone playing the lute close by as well."
 
     show piz think
 
@@ -145,7 +145,6 @@ label start:
         $ stress_level += 25
         stop music
         play music "audio/Musician - Second Half (Fast).mp3"
-        play sound "audio/Crowd in Fair.mp3" volume 0.2
         show piz horror
         voice "audio/piz_horror1.mp3"
         piz "I really shouldn’t be wasting my time on this. I still have a list of errands to accomplish before the competition."  
@@ -163,7 +162,7 @@ label start:
     label piz_choice4_crust:
     label piz_crust_out_of_order:
         $ stress_level += 15
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play audio 'audio/Crowd in Fair.mp3' volume 0.15 loop
         play sound "audio/Trade - Cheese Filling.mp3"
         show piz horror
         voice "audio/piz_horror2.mp3"
@@ -173,7 +172,7 @@ label start:
 
     #6.1
     label piz_choice4_toppings:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play audio 'audio/Crowd in Fair.mp3' volume 0.15 loop
         play sound "audio/Trade - Cast Iron.mp3"
         show piz idle
         "Piz cleared a path through the crowd to the stall and picked out his missing topping, now satisfied that he completed the first item on his list."
@@ -181,7 +180,7 @@ label start:
         voice "audio/piz_happy2.mp3"
         piz "This is exactly what I needed!"
         show piz idle
-        "Next on his list is cheese crust filling and then to find the perfect decoration for the final touch up."
+        "Next on his list is the cheese crust filling, and then to find the perfect decoration for the final touch up."
 
     #6.2
         show piz think
@@ -193,8 +192,7 @@ label start:
 
     #7.1
     label piz_choice5_crust:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
-        play sound "audio/Trade - Cheese Filling.mp3"
+        play audio "audio/Trade - Cheese Filling.mp3"
         "Piz made his way back to where the stall was. Completing items on the list in order helps focus him on his task." 
         show piz idle
         "Therefore, he managed to get his crust filled with quality cheese."
@@ -226,7 +224,6 @@ label start:
 
     #8.1
     label piz_topping_out_of_order:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Cast Iron.mp3"
         show piz idle
         "Piz approached the stall and picked out his missing topping, finally completing the first item on his list. He is a bit stressed about completing tasks out of order."
@@ -248,7 +245,6 @@ label start:
 
     #9
     label piz_decor_out_of_order:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Sparkle.mp3"
         show piz horror
         "Sifting through a nearby stall, Piz found an adequate final decoration to set on himself for the competition."
@@ -259,7 +255,6 @@ label start:
 
     #10
     label piz_decor_in_order:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Decoration Sparkle.mp3"
         show piz idle
         "The last item on the list is to find the final perfect decoration, and Piz definitely found it. The magnificent piece adornes his body perfectly."
@@ -270,7 +265,6 @@ label start:
 
     #11
     label piz_decor_after:
-        play sound "audio/Crowd in Fair.mp3"
         play sound "audio/Trade - Ding.mp3"
         show piz speak
         voice "audio/piz_happy2.mp3"
@@ -279,7 +273,6 @@ label start:
 
     #12
     label piz_final:
-        play sound "audio/Crowd in Fair.mp3"
         show piz horror
         voice "audio/piz_horror1.mp3"
         piz "I didn’t get a chance to complete all my errands. I hope I’m ready for the competition, regardless, there is no turning back"   
@@ -297,8 +290,6 @@ label start:
 
         scene bg fair
         show screen bar_focus_level
-        play music "audio/theme.mp3"
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         show bob happy
         voice "audio/bob_happy1.mp3"
         bob "Hello Townia fair!"
@@ -323,7 +314,7 @@ label start:
 
     #3.1
     label bob_choice1_music:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play audio "audio/Crowd in Fair.mp3" volume 0.15
         stop music
         play music "audio/Musician - First Half (Slow).mp3"
         show bob happy
@@ -349,7 +340,7 @@ label start:
     #4.1
     label bob_choice2_music:
         $ did_music_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.2
+        play sound "audio/Crowd in Fair.mp3" volume 0.15
         play music "audio/Musician - Second Half (Fast).mp3"
         show bob idle
         "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
@@ -381,7 +372,7 @@ label start:
     #5.1
     label bob_choice3_stall:
         $ did_food_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Crowd in Fair.mp3" volume 0.15
         play sound "audio/Trade - Food Sizzle.mp3"
         show bob happy
         voice "audio/bob_happy2.mp3"
@@ -404,7 +395,7 @@ label start:
     #6.1
     label bob_choice4_food:
         $ did_food_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
+        play sound "audio/Crowd in Fair.mp3" volume 0.15
         play sound "audio/Trade - Eat Food.mp3"
         show bob idle
         bob "Om nom nom"
