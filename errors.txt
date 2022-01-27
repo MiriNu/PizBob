@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 46: unexpected EOF while parsing
-    top right
-             ^
+File "game/script.rpy", line 52: expected 'comma or end of line' not found.
+    hide stress bar
+    ^
+
+File "game/script.rpy", line 59: expected 'comma or end of line' not found.
+    hide focus bar
+    ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Thu Jan 27 18:00:11 2022
+Thu Jan 27 23:10:22 2022

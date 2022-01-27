@@ -41,18 +41,26 @@ image bard happy = im.Scale("BARD HAPPY.png", 475, 725)
 image owlbear mad = im.Crop("OWLBEAR MAD.png", (300, 200, 1100, 1800))
 image owlbear mad = im.Scale("OWLBEAR MAD.png", 500, 750)
 
+define piz = Character("Piz", color="#0055FF")
+define bob = Character("Bob", color="#89CC4B")
+
 image stress bar = im.Scale("stress_bar.png", 350, 35)
 image stress bar:
     "stress_bar.png"
-    xalign 0.95
+    xalign 0.845
     yalign 0.1
 
-define piz = Character("Piz", color="#0055FF")
-define bob = Character("Bob", color="#89CC4B")
+image focus bar = im.Scale("focus_bar.png", 350, 35)
+image focus bar:
+    "focus_bar.png"
+    xalign 0.835
+    yalign 0.1
 
 default stress_level = 0
 default focus_level = 0
 
+default piz_choice4_toppings = False
+default piz_decor_in_order = False
 default did_food_activity = False
 default did_music_activity = False
 default did_buy = False
@@ -186,8 +194,10 @@ label start:
     label piz_choice4_crust:
     label piz_crust_out_of_order:
         $ stress_level += 15
+        hide bard happy
+        show bg cheese
+        show piz horror at left
         play sound "audio/Trade - Cheese Filling.mp3"
-        show piz horror
         voice "audio/piz_horror2.mp3"
         "There seemed to be a big crowd between Piz and the topping stall. Therefore, Piz decided to approach the nearby stall and have his crust filled with cheese."
         "Having done that, Piz made his way through the crowd to reach the toppings stall."  
@@ -195,8 +205,11 @@ label start:
 
     #6.1
     label piz_choice4_toppings:
+        $ piz_choice4_toppings = True
+        hide bard happy
+        show bg topping
+        show piz idle at left
         play sound "audio/Trade - Cast Iron.mp3"
-        show piz idle
         "Piz cleared a path through the crowd to the stall and picked out his missing topping, now satisfied that he completed the first item on his list."
         show piz speak   
         voice "audio/piz_happy2.mp3"
@@ -214,6 +227,7 @@ label start:
 
     #7.1
     label piz_choice5_crust:
+        show bg cheese
         play audio "audio/Trade - Cheese Filling.mp3"
         "Piz made his way back to where the stall was. Completing items on the list in order helps focus him on his task." 
         show piz idle
@@ -246,8 +260,9 @@ label start:
 
     #8.1
     label piz_topping_out_of_order:
-        play sound "audio/Trade - Cast Iron.mp3"
+        show bg topping
         show piz idle
+        play sound "audio/Trade - Cast Iron.mp3"
         "Piz approached the stall and picked out his missing topping, finally completing the first item on his list. Completing tasks out of order stresses him out."
         "Now, all that is left on the list is to find the perfect decoration for the final touch up before signing up to the competition."
     #8.2
@@ -267,8 +282,9 @@ label start:
 
     #9
     label piz_decor_out_of_order:
-        play sound "audio/Trade - Sparkle.mp3"
+        show bg sparkly
         show piz horror
+        play sound "audio/Trade - Sparkle.mp3"
         "Sifting through a nearby stall, Piz found an adequate final decoration to set on himself for the competition."
         voice "audio/piz_horror3.mp3"
         piz "I wasn’t supposed to do this now, but I suppose that this should do."       
@@ -277,8 +293,10 @@ label start:
 
     #10
     label piz_decor_in_order:
-        play sound "audio/Trade - Decoration Sparkle.mp3"
+        $ piz_decor_in_order = True
+        show bg sparkly
         show piz idle
+        play sound "audio/Trade - Decoration Sparkle.mp3"
         "The last item on the list is to find the final perfect decoration, and Piz definitely found it. The magnificent piece adornes his body perfectly."
         show piz speak
         voice "audio/piz_happy4.mp3"
@@ -287,20 +305,36 @@ label start:
 
     #11
     label piz_decor_after:
-        play sound "audio/Trade - Ding.mp3"
+        show bg sparkly
         show piz speak
+        play sound "audio/Trade - Ding.mp3"
         voice "audio/piz_happy2.mp3"
         piz "Finally, all errands are complete and I can go sign up to the competition!"
         jump piz_competition
 
     #12
     label piz_final:
-        show piz horror
+        show bg fair
+        show piz horror at center
         voice "audio/piz_horror1.mp3"
         piz "I didn’t get a chance to complete all my errands. I hope I’m ready for the competition. Regardless, there is no turning back"
         jump piz_competition   
 
+    #13
     label piz_competition:
+        show bg fair_reg
+        show piz idle at center
+        "COMPETITION TIME!"
+        if (piz_choice4_toppings and piz_decor_in_order):
+            "Piz has come prepared: sticking to his list and looking as sharp as he can be. No wonder that Piz won first prize."
+            show piz speak
+            voice "audio/piz_happy3.mp3"
+            piz "I won!"
+        else:
+            show piz horror
+            "Piz was simply not prepared enough, whether it was the crowd, the distractions or simply not completing tasks in order."
+            voice "audio/piz_horror1.mp3"
+            "It just wasn't Piz's day and he didn't win the competition."
         jump bob
 
 
@@ -312,6 +346,7 @@ label start:
 
         scene bg fair
         show screen bar_focus_level
+        show focus bar
         show bob happy
         voice "audio/bob_happy1.mp3"
         bob "Hello Townia fair!"
@@ -402,6 +437,8 @@ label start:
 
     #5.1
     label bob_choice3_stall:
+        show bg topping
+        show bob idle at left
         hide bard happy # won't go away on its own
         $ did_food_activity = True
         play sound "audio/Trade - Food Sizzle.mp3"
@@ -448,7 +485,8 @@ label start:
 
     #7.1
     label bob_choice5_signup:
-        show bob think
+        show bg fair
+        show bob think at center
         voice "audio/bob_think1.mp3"
         "The sign up stall is straight ahead, right next to a stall with a lot of shiny materials and elements on display."
 
@@ -468,11 +506,14 @@ label start:
     #8.1
     label bob_choice6_shiny:
         $ did_buy = True
+        show bg sparkly
+        show bob happy at left
         play sound "audio/Trade - Whetstone.mp3"
-        show bob happy
         "Before signing up to the competition, Bob decided to examine the nearby stall. The items at the stall are mesmerizing in their appearance and function."
         voice "audio/bob_happy4.mp3"
         bob "I’ll buy this shiny whetstone, which will definitely upgrade the sharpness of my mighty axe."
+        show bg fair_reg
+        show bob idle at center
         "Following the purchase, Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
     #8.2
     show bob idle
@@ -501,7 +542,7 @@ label start:
 
     #9.1
     label bob_signup:
-        show bob think
+        show bob think at center
         voice "audio/bob_think1.mp3"
         "Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
 
@@ -609,7 +650,7 @@ label start:
         "He is full of excitement as he waits for the competition to start. It should be soon."
         voice "audio/bob_happy2.mp3"
         bob "I will show everyone what a gelatinous octopus such as myself is capable of. I can do this!"
-        jump ending_seq
+        jump bob_competition
 
     #12
     label bob_not_buy_competition:
@@ -617,13 +658,31 @@ label start:
         "Bob is full of excitement as he waits for the competition to start. It should be soon."
         voice "audio/bob_happy2.mp3"
         bob "I will show everyone what a gelatinous octopus such as myself is capable of."
-        jump ending_seq
+        jump bob_competition
 
+    #14
+    label bob_competition:
+        show bob idle
+        "COMPETITION TIME!"
+        if (did_scope_activity or did_warmup_activity):
+            show bob idle
+            "Bob knows his strength well, and knows when and how to strike to get the powerful outcome that beats his foes."
+            show bob happy
+            voice "audio/bob_happy2.mp3"
+            bob "I won!"
+        else:
+            show bob idle
+            "Try as he might, Bob was simply not focused enough to land a powerful enough of a blow."
+            show bob horror
+            voice "audio/bob_horror3.mp3"
+            "Sadly, he did not win the competition on that day."
+        jump ending_seq
 
 
     #1
     label ending_seq:
         hide screen bar_focus_level
+        hide focus bar
         hide bob happy # won't go away on its own
         show bg welcome
         stop music
@@ -718,7 +777,7 @@ label start:
         "As the monster roared and bared its sharp claws, there was no one to stand against it. It easily menaced its way through the fair grounds, destroying anything and anyone in its wake."
         "..."
         hide owlbear mad
-        # maybe should add a black screen as a background
+        show destroyed
         play sound "audio/Destroyed- Sad Crowd + Fire.mp3"
         "When it finally left, the entire place was in shambles and many were injured or killed. This isn’t a day that the people of Townia will soon forget…"
         jump game_ending
