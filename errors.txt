@@ -2,25 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 50: unexpected EOF while parsing
-    False;
-          ^
-
-File "game/script.rpy", line 51: unexpected EOF while parsing
-    False;
-          ^
-
-File "game/script.rpy", line 52: unexpected EOF while parsing
-    False;
-          ^
-
-File "game/script.rpy", line 53: unexpected EOF while parsing
-    False;
-          ^
-
-File "game/script.rpy", line 54: unexpected EOF while parsing
-    False;
-          ^
+File "game/script.rpy", line 68: expected statement.
+    Label piz:
+             ^
 
 Ren'Py Version: Ren'Py 7.4.11.2266
-Wed Jan 26 21:29:17 2022
+Thu Jan 27 11:40:12 2022

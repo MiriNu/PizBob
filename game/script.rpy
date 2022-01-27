@@ -65,20 +65,21 @@ label start:
     play sound "audio/Crowd in Fair.mp3" volume 0.5
     "Welcome to Townia Fair!"   
 
-    scene bg fair
+    label piz:
+        scene bg fair
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+        # This shows a character sprite. A placeholder is used, but you can
+        # replace it by adding a file named "eileen happy.png" to the images
+        # directory.
 
-    show piz idle
-
-    # These display lines of dialogue.
-    voice "audio/piz_happy3.mp3"
-    piz "I can’t believe it, I made it right on schedule. This is great!" 
-    show piz think
-    voice "audio/piz_think1.mp3"
-    piz  "Now I need to first find my missing topping, then to the cheese filling both for my crust. From there to the competition."
+        show piz idle
+        show screen bar_stress_level
+        # These display lines of dialogue.
+        voice "audio/piz_happy3.mp3"
+        piz "I can’t believe it, I made it right on schedule. This is great!"
+        show piz think
+        voice "audio/piz_think1.mp3"
+        piz  "Now I need to first find my missing topping, then to the cheese filling both for my crust. From there to the competition."
     
     #1.2
     menu:
@@ -290,12 +291,17 @@ label start:
         jump piz_competition   
 
     label piz_competition:
+        jump bob
+
+
 
     label bob:
         scene bg welcome
+        hide screen bar_stress_level
         "Meanwhile…"
 
         scene bg fair
+        show screen bar_focus_level
         play music "audio/theme.mp3"
         play sound "audio/Crowd in Fair.mp3" volume 0.5
         show bob happy
