@@ -408,7 +408,7 @@ label start:
 
     #6.1
     label bob_choice4_food:
-        $ did_food_activity = true
+        $ did_food_activity = True
         play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Eat Food.mp3"
         show bob idle
