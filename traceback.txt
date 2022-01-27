@@ -1,15 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 609, in script
-    "As it grows closer, it appears that a great owlbear decided to crash the festivities."
-IOError: Couldn't find file 'audio/owlbert_angry.mp3'.
+  File "game/script.rpy", line 640, in script
+    "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
+IOError: Couldn't find file 'audio/Full Saved - Crowd Screaming Only.mp3'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 609, in script
-    "As it grows closer, it appears that a great owlbear decided to crash the festivities."
+  File "game/script.rpy", line 640, in script
+    "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
   File "renpy/ast.py", line 721, in execute
     renpy.exports.say(who, what, *args, **kwargs)
   File "renpy/exports.py", line 1419, in say
@@ -38,9 +38,9 @@ Full traceback:
     rv = renpy.loader.load(fn)
   File "renpy/loader.py", line 798, in load
     raise IOError("Couldn't find file '%s'." % name)
-IOError: Couldn't find file 'audio/owlbert_angry.mp3'.
+IOError: Couldn't find file 'audio/Full Saved - Crowd Screaming Only.mp3'.
 
-Windows-10-10.0.19041
+Windows-10-10.0.17763
 Ren'Py 7.4.11.2266
 PizBob 1.0
-Thu Jan 27 14:23:06 2022
+Thu Jan 27 16:42:57 2022

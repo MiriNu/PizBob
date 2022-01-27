@@ -35,6 +35,9 @@ image bob horror = im.Scale("BOB HORROR.png", 500, 750)
 image bob speak = im.Crop("BOB SPEAK.png", (300, 200, 1100, 1800))
 image bob speak = im.Scale("BOB SPEAK.png", 500, 750)
 
+image owlbear mad = im.Crop("BOB SPEAK.png", (300, 200, 1100, 1800))
+image owlbear mad = im.Scale("BOB SPEAK.png", 500, 750)
+
 define piz = Character("Piz", color="#0055FF")
 define bob = Character("Bob", color="#89CC4B")
 
@@ -95,8 +98,8 @@ label start:
         $ stress_level += 15
         show piz idle
         "Looking around, there seems to be great excitement at the fair with many people walking to-and-fro. "
+        "The toppings stall, which is at top of Piz’s list, appears to be at the far end of the fair."
         stop music fadeout 1.0
-        "The toppings stall, which is at top of Piz’s list, appears to be at the far end of the fair." 
         play music "audio/Musician - First Half (Slow).mp3"
         "Whereas, the cheese crust filling stall is nearby. There is the sound of someone playing the lute close by as well."
 
@@ -112,14 +115,20 @@ label start:
             jump piz_choice2_music    
 
     label piz_choice2_toppings:
+        stop music
+        play music "audio/theme.mp3"
         jump piz_choice4_toppings
 
     label piz_choice2_crust:
         $ stress_level += 15
+        stop music
+        play music "audio/theme.mp3"
         jump piz_crust_out_of_order
 
     label piz_choice2_music:
         $ stress_level += 20
+        stop music
+        play music "audio/Musician - Second Half (Fast).mp3"
         show piz horror
         voice "audio/piz_horror3.mp3"
         piz "The music is nice, but this definitely isn’t where I’m supposed to be."   
@@ -135,21 +144,24 @@ label start:
             jump piz_choice3_music    
 
     label piz_choice3_toppings:
+        stop music
+        play music "audio/theme.mp3"
         jump piz_choice4_toppings
 
     label piz_choice3_crust:
         $ stress_level += 15
+        stop music
+        play music "audio/theme.mp3"
         jump piz_crust_out_of_order
 
     label piz_choice3_music:
         $ stress_level += 25
-        stop music
-        play music "audio/Musician - Second Half (Fast).mp3"
         show piz horror
         voice "audio/piz_horror1.mp3"
-        piz "I really shouldn’t be wasting my time on this. I still have a list of errands to accomplish before the competition."  
+        piz "I really shouldn’t be wasting my time on this. I still have a list of errands to accomplish before the competition."
         "Looking around: the toppings stall, which is at the top of Piz’s list, appears to be at the far end of the fair, whereas the cheese crust filling stall is nearby." 
-        stop music fadeout 1.0
+        stop music
+        play music "audio/theme.mp3"
 
     #4.2
     menu:
@@ -162,17 +174,15 @@ label start:
     label piz_choice4_crust:
     label piz_crust_out_of_order:
         $ stress_level += 15
-        play audio 'audio/Crowd in Fair.mp3' volume 0.15 loop
         play sound "audio/Trade - Cheese Filling.mp3"
         show piz horror
         voice "audio/piz_horror2.mp3"
-        "There seemed to be a big crowd between Piz and the topping stall, therefore, Piz decided to approach the nearby stall and have his crust filled with cheese."
+        "There seemed to be a big crowd between Piz and the topping stall. Therefore, Piz decided to approach the nearby stall and have his crust filled with cheese."
         "Having done that, Piz made his way through the crowd to reach the toppings stall."  
         jump piz_topping_out_of_order
 
     #6.1
     label piz_choice4_toppings:
-        play audio 'audio/Crowd in Fair.mp3' volume 0.15 loop
         play sound "audio/Trade - Cast Iron.mp3"
         show piz idle
         "Piz cleared a path through the crowd to the stall and picked out his missing topping, now satisfied that he completed the first item on his list."
@@ -226,7 +236,7 @@ label start:
     label piz_topping_out_of_order:
         play sound "audio/Trade - Cast Iron.mp3"
         show piz idle
-        "Piz approached the stall and picked out his missing topping, finally completing the first item on his list. He is a bit stressed about completing tasks out of order."
+        "Piz approached the stall and picked out his missing topping, finally completing the first item on his list. Completing tasks out of order stresses him out."
         "Now, all that is left on the list is to find the perfect decoration for the final touch up before signing up to the competition."
     #8.2
         show piz think
@@ -275,7 +285,7 @@ label start:
     label piz_final:
         show piz horror
         voice "audio/piz_horror1.mp3"
-        piz "I didn’t get a chance to complete all my errands. I hope I’m ready for the competition, regardless, there is no turning back"   
+        piz "I didn’t get a chance to complete all my errands. I hope I’m ready for the competition. Regardless, there is no turning back"
         jump piz_competition   
 
     label piz_competition:
@@ -295,6 +305,8 @@ label start:
         bob "Hello Townia fair!"
         bob "Let’s see, I have to find the sign up booth to test my strength swinging that hammer."
         voice "audio/bob_happy3.mp3"
+        stop music
+        play music "audio/Musician - First Half (Slow).mp3"
         bob "But look at this place! There are so many things to try out, food to eat, goods to peruse, and the sound of music being played. What shall I do first?"
 
     #2.2
@@ -308,20 +320,20 @@ label start:
 
     label bob_choice1_signup:
         $ focus_level += 35
+        stop music
+        play music "audio/theme.mp3"
         jump bob_choice5_signup
     label bob_choice1_stall:
+        stop music
+        play music "audio/theme.mp3"
         jump bob_choice3_stall
 
     #3.1
     label bob_choice1_music:
-        play audio "audio/Crowd in Fair.mp3" volume 0.15
-        stop music
-        play music "audio/Musician - First Half (Slow).mp3"
         show bob happy
         voice "audio/bob_happy4.mp3"
         bob "This music sounds really nice! Just what I need to get into the mood of the competition!"
         show bob think
-        stop music
 
     #3.2
     menu:
@@ -335,21 +347,24 @@ label start:
             $ focus_level += 25
         else:
             $ focus_level += 15
+        stop music
+        play music "audio/theme.mp3"
         jump bob_choice5_signup
 
     #4.1
     label bob_choice2_music:
         $ did_music_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.15
+        stop music
         play music "audio/Musician - Second Half (Fast).mp3"
         show bob idle
         "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
-        "A few even tossed coins to the hat placed nearby on the floor."
+        "A few even tossed coins into the hat placed nearby on the floor."
         show bob happy
-        bob "This was great and I enjoyed that a great deal! What should I do next?"
+        bob "This was great and I enjoyed that a immensely! What should I do next?"
         voice "audio/bob_think1.mp3"
         bob "I need to sign up to the competition, but there is still so much to explore at this amazing fair."
         stop music
+        play music "audio/theme.mp3"
 
         if not did_food_activity:
             #4.2
@@ -372,7 +387,6 @@ label start:
     #5.1
     label bob_choice3_stall:
         $ did_food_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.15
         play sound "audio/Trade - Food Sizzle.mp3"
         show bob happy
         voice "audio/bob_happy2.mp3"
@@ -395,7 +409,6 @@ label start:
     #6.1
     label bob_choice4_food:
         $ did_food_activity = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.15
         play sound "audio/Trade - Eat Food.mp3"
         show bob idle
         bob "Om nom nom"
@@ -417,7 +430,6 @@ label start:
 
     #7.1
     label bob_choice5_signup:
-        play sound "audio/Crowd in Fair.mp3"
         show bob think
         voice "audio/bob_think1.mp3"
         "The sign up stall is straight ahead, right next to a stall with a lot of shiny materials and elements on display."
@@ -438,11 +450,9 @@ label start:
     #8.1
     label bob_choice6_shiny:
         $ did_buy = True
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         play sound "audio/Trade - Whetstone.mp3"
         show bob happy
-        "Before signing up to the competition, Bob decided to examine the nearby stall."
-        "The items at the stall are mesmerizing in their appearance and function."
+        "Before signing up to the competition, Bob decided to examine the nearby stall. The items at the stall are mesmerizing in their appearance and function."
         voice "audio/bob_happy4.mp3"
         bob "I’ll buy this shiny whetstone, which will definitely upgrade the sharpness of my mighty axe."
         "Following the purchase, Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
@@ -473,11 +483,9 @@ label start:
 
     #9.1
     label bob_signup:
-        play sound "audio/Crowd in Fair.mp3" volume 0.5
         show bob think
         voice "audio/bob_think1.mp3"
-        "Bob signed up to the competition, and realized there is still time before it starts."
-        "He could try to do something useful to focus himself or just wait and let the excitement take over."
+        "Bob signed up to the competition, and realized there is still time before it starts. He could try to do something useful to focus himself or just wait and let the excitement take over."
 
     #9.2
     menu:
@@ -498,7 +506,6 @@ label start:
         $ focus_level += 15
         $ did_warmup_activity = True
         if not did_scope_activity:
-            play sound "audio/Crowd in Fair.mp3" volume 0.5
             show bob think
             "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike."
             voice "audio/bob_happy3.mp3"
@@ -524,7 +531,6 @@ label start:
         #10.3
         else:
             label bob_warmup_did_scope:
-                play sound "audio/Crowd in Fair.mp3" volume 0.5
                 show bob think
                 "This competition is important and therefore, it is important to make sure one is prepared for when it is time to land the decisive strike. All that is left is to wait for the competition to start."
                 if did_buy:
@@ -537,10 +543,9 @@ label start:
     label bob_scope:
         $ did_scope_activity = True
         if not did_warmup_activity:
-            play sound "audio/Crowd in Fair.mp3" volume 0.5
             show bob think
             voice "audio/bob_horror1.mp3"
-            "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
+            "The competition looks fierce and Bob examines each of the seven carefully: three are human, one a half-orc, two dwarves and a rather burly elf."
             "He gains the confidence that he truly has a chance to beat them for the winning title. He can just wait for the competition to start or do some warm sessions beforehand."
 
             #11.2
@@ -563,7 +568,6 @@ label start:
         #11.3
         else:
             label bob_scope_did_warmup:
-                play sound "audio/Crowd in Fair.mp3" volume 0.5
                 show bob think
                 voice "audio/bob_horror1.mp3"
                 "The competition looks fierce and Bob examines each of the seven carefully, three are human, one a half-orc, two dwarves and a rather burly elf."
@@ -581,30 +585,31 @@ label start:
     #13
     label bob_buy_competition:
         $ focus_level -= 10
-        play sound "audio/Crowd in Fair.mp3"
         play sound "audio/Trade - Ding.mp3"
         show bob happy
         "While Bob waits for the competition to start, he pulls out the whetstone he just bought and works on sharpening his mighty axe."
         "He is full of excitement as he waits for the competition to start. It should be soon."
         voice "audio/bob_happy2.mp3"
         bob "I will show everyone what a gelatinous octopus such as myself is capable of. I can do this!"
-        stop music
+        jump ending_seq
 
     #12
     label bob_not_buy_competition:
-        play sound "audio/Crowd in Fair.mp3"
         show bob happy
         "Bob is full of excitement as he waits for the competition to start. It should be soon."
         voice "audio/bob_happy2.mp3"
         bob "I will show everyone what a gelatinous octopus such as myself is capable of."
-        stop music
+        jump ending_seq
 
 
 
     #1
     label ending_seq:
+        show bg welcome
+        stop music
         play music "audio/Fight Theme.mp3"
         "As people are enjoying the town fair, it’s music, food and various activities, the sound of something big starts to be heard over the excitement."
+        show owlbear mad
         voice "audio/owlbeart_angry.mp3"
         "As it grows closer, it appears that a great owlbear decided to crash the festivities."
 
@@ -622,8 +627,6 @@ label start:
         # Caused issues - needs fixing --->  if showup_both or showup_one:
             #sound and background
 
-        "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
-        "Is there anybody that would stop it before it is too late?"
 
         if showup_both:
             jump showup_both_finale
@@ -633,13 +636,51 @@ label start:
             jump showup_none_finale
 
     label showup_both_finale:
-        "Piz and Bob are prepared to make a stand against the horrible creature."
-        " The battle is hard as the monster slashes at them, while they both defend against the attacks."
-        "Piz fires a spell to stun the creature as Bob drives his mighty axe to finally strike down the beast."
+        play audio "audio/Full Saved - Crowd Screaming Only.mp3"
+        "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
+        "Is there anybody that would stop it before it is too late?"
 
-#     label showup_one_finale:
-#
-#     label showup_none_finale:
+
+        "Piz and Bob are prepared to make a stand against the horrible creature."
+        play sound "audio/piz_bob_battle.mp3"
+        "The battle is hard as the monster slashes at them, while they both defend against the attacks. Piz fires a spell to stun the creature as Bob drives his mighty axe to finally strike down the beast."
+
+        play audio "audio/Full Saved - Cheering.mp3"
+        "Piz and Bob are heroes who stood up against the massive owlbear and defeated it. Townia’s fair was saved and that evening there was a big celebration in their honor."
+
+
+    label showup_one_finale:
+        play audio "audio/Half Saved - Crowd Screaming + Slight Destruction.mp3"
+        "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
+        "Is there anybody that would stop it before it is too late?"
+        if (showup_piz = True):
+            play sound "audio/piz_battle.mp3"
+            "Piz is prepared to make a stand against the horrible creature."
+            "But the monster is big and its slashes cut deep into Piz’s crust. Piz manages to conjure a few crucial spells that hit the monster hard and finally, it is defeated."
+
+            "When all seemed lost as a horror swept into the fair, there was only one who stood against it. Piz fought hard and managed eventually to halt the monster’s progress."
+            play sound "audio/Half Saved - Cheering.mp3"
+            "However, it was not without its toll of destruction. There was a tame celebration in Piz’s honor before the crowd shuffled to start work on clearing up the mess left behind."
+
+        if (showup_bob = True):
+            play sound "audio/bob_battle"
+            "Bob is prepared to make a stand against the horrible creature."
+            "But the monster is big and its slashes cut deep into Bob’s gelatinous form. Despite this, Bob doesn’t waver and continues to hold fast."
+            "Finally, he finds the monster’s weak spot and strikes true with his giant axe, as the monster crumples down, defeated."
+
+            "When all seemed lost as a horror swept into the fair, there was only one who stood against it. Bob fought hard and managed eventually to halt the monster’s progress."
+            play sound "audio/Half Saved - Cheering.mp3"
+            "However, it was not without its toll of destruction. There was a tame celebration in Bob’s honor before the crowd shuffled to start work on clearing up the mess left behind."
+
+    label showup_none_finale:
+        play audio "audio/Destroyed - Screaming + Destruction.mp3"
+        "The monster’s intentions are clear, he aims to destroy the fair and anyone who stands in its way!"
+        "Is there anybody that would stop it before it is too late?"
+
+        play sound "audio/owlbert_angry.mp3"
+        "As the monster roared and bared its sharp claws, there was no one to stand against it. It easily menaced its way through the fair grounds, destroying anything and anyone in its wake."
+        play audio "audio/Destroyed - Sad Crowd + Fire.mp3"
+        "When it finally left, the entire place was in shambles and many were injured or killed. This isn’t a day that the people of Townia will soon forget…"
 
 
 
