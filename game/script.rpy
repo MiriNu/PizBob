@@ -379,6 +379,7 @@ label start:
     label bob_choice1_music:
         show bob happy
         show bard happy at left
+        play music "audio/Musician - Second Half (Fast).mp3"
         voice "audio/bob_happy4.mp3"
         bob "This music sounds really nice! Just what I need to get into the mood of the competition!"
         show bob think
@@ -403,9 +404,7 @@ label start:
     #4.1
     label bob_choice2_music:
         $ did_music_activity = True
-        stop music
         show bard happy at left
-        play music "audio/Musician - Second Half (Fast).mp3"
         show bob idle
         "Bob made it to the musician who was playing for quite the crowd. All seemed happy and pleased to just stand by and listen."
         "A few even tossed coins into the hat placed nearby on the floor."
@@ -472,7 +471,8 @@ label start:
 
     if not did_music_activity:
         #6.2
-        show bob think
+        show bg fair
+        show bob think at center
         menu:
             "Follow the music":
                 jump bob_choice1_music
